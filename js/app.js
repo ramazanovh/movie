@@ -49,3 +49,10 @@ function renderMovies(data) {
           `)
   );
 }
+
+inputEl.addEventListener("input", (e) => {
+  const filteredMovies = allmovies.filter((movie) =>
+    movie.name.toLowerCase().includes(e.target.value.toLowerCase())
+  );
+  renderMovies(filteredMovies);
+});
