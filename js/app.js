@@ -4,3 +4,9 @@ let cards = document.querySelector(".cards");
 let allmovies;
 let api = "https://api.tvmaze.com/shows";
 let paginationCount = 0;
+
+fetch(api)
+  .then((res) => res.json())
+  .then((data) => {
+    allmovies = data;
+  });
