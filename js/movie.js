@@ -1,6 +1,7 @@
 const movieID = new URLSearchParams(location.search).get("id");
 const detailPage = document.querySelector(".detailPage");
 let api = "https://api.tvmaze.com/shows";
+let title = document.querySelector("title");
 let details;
 fetch(api + "/" + movieID)
   .then((res) => res.json())
@@ -10,6 +11,7 @@ fetch(api + "/" + movieID)
 
 function renderDetails(data) {
   detailPage.innerHTML = "";
+  title.innerHTML = data.name;
   detailPage.innerHTML = `
    
       <div class="  container-xl">
