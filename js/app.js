@@ -5,6 +5,8 @@ let allmovies;
 let api = "https://api.tvmaze.com/shows";
 let paginationCount = 0;
 
+let prevBtn = document.querySelector(".prev");
+let nextBtn = document.querySelector(".next");
 fetch(api)
   .then((res) => res.json())
   .then((data) => {
@@ -55,4 +57,31 @@ inputEl.addEventListener("input", (e) => {
     movie.name.toLowerCase().includes(e.target.value.toLowerCase())
   );
   renderMovies(filteredMovies);
+});
+
+nextBtn.addEventListener("click", () => {
+  prevBtn.removeAttribute("disabled");
+  if (paginationCount == 0) {
+    prevBtn.setAttribute("disabled", true);
+  }
+
+  if (paginationCount === 200) {
+    nextBtn.setAttribute("disabled", true);
+  }
+  paginationCount += 20;
+
+  renderMovies(allmovies);
+  prevBtn.removeAttribute("disabled");
+});
+prevBtn.addEventListener("click", () => {
+  nextBtn.removeAttribute("disabled");
+
+  if (paginationCount === 240) {
+    nextBtn.setAttribute("disabled", true);
+  }
+  if (paginationCount === 20) {
+    prevBtn.setAttribute("disabled", true);
+  }
+  paginationCount -= 20;
+  renderMovies(allmovies);
 });
