@@ -6,7 +6,6 @@ fetch(api + "/" + movieID)
   .then((res) => res.json())
   .then((data) => {
     renderDetails(data);
-    console.log(data);
   });
 
 function renderDetails(data) {
