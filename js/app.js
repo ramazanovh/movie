@@ -11,3 +11,41 @@ fetch(api)
     renderMovies(data);
     allmovies = data;
   });
+
+function renderMovies(data) {
+  cards.innerHTML = "";
+  data.slice(paginationCount, paginationCount + 20).forEach(
+    (movie) =>
+      (cards.innerHTML += `
+          <div class="card" style="width: 19rem">
+            <img
+              src="${movie.image.medium}"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title fs-4">${movie.name}</h5>
+              <span>Premiere ${movie.premiered}</span>
+               
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">IMDB Rating: ${movie.rating.average} </li>
+              <li class="list-group-item">Genre: ${movie.genres[0]} </li>
+              <li class="list-group-item">Language: ${movie.language}</li>
+            </ul>
+            <div class="card-body d-flex justify-content-between">
+              <a href="${movie.officialSite}" class="btn btn-success">Go To Website</a>
+              <a
+              href="../movie.html?id=${movie.id}"
+                
+                class="btn btn-primary"
+             
+              >
+                Go To Detail
+              </a>
+            </div>
+          </div>
+          
+          `)
+  );
+}
