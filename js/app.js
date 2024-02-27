@@ -8,5 +8,6 @@ let paginationCount = 0;
 fetch(api)
   .then((res) => res.json())
   .then((data) => {
+    renderMovies(data);
     allmovies = data;
   });
